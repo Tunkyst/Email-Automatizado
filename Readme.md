@@ -1,3 +1,7 @@
+#bibliotecas usadas
+import win32com.client as win32
+import pandas as pd
+
 #usar uma planilha
 #!!pode ser de qualquer tipo!!
 candidatos = pd.read_csv('Pasta.csv')
