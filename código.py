@@ -5,8 +5,8 @@ import pandas as pd
 #usar uma planilha
 #!!pode ser de qualquer tipo!!
 candidatos = pd.read_csv('Pasta.csv')
-x = candidatos.loc[:,"email"].values
-
+x = candidatos.loc[:,"email"].values #pega a parte dos email
+y = candidatos.loc[:,"nome"].values #pega os nomes
 
 #criar a integração
 outlook = win32.Dispatch('outlook.application')
@@ -17,16 +17,13 @@ email = outlook.CreateItem(0)
 
 #configurações do e-mail.
 #condição de repetição usada para enviar mais de um email.
+j=0
 for i in x:
     email = outlook.CreateItem(0)
     email.to = i
     email.Subject = "Aqui vai o título do email."
-    email.HTMLBody = """ 
-    Aqui vai o texto do email.
-    Caso já possua um email pronto: 
-        -Inspecione a página que está o email.
-        -Procure a parte que engloba o texto.
-        -Copie e cole aqui.
-        """
+    email.HTMLBody =  f''' 
+    Olá {y[j]} '''#Aqui vai os nomes certinhos
     email.Send()
+    j += 1
 print("Enviado") #criado para ser prova de que o envio ocorreu corretamente.
